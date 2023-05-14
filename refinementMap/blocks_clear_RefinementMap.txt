@@ -1,0 +1,45 @@
+(define (RefinementMap blocks_clear_RefinementMap)
+    (:fluents
+      (
+      (h_goal)
+      (clear A)
+      )
+    )
+    (:fluents
+        (
+        (H)
+        (exists (?x - BlockType) (holding ?x))))
+    (:fluents
+        (
+        (n)
+        (#x)
+        (exists (?x - BlockType) (above ?x A))))
+    (:actionMap
+        (pickabove)
+        (:GologPicksExists (?arg_1 ?arg_2 - BlockType) 
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (on ?arg_1 ?arg_2)
+                    (or (above ?arg_1 A ) (== ?arg_1 A))
+                    (arm_empty)
+                    (clear ?arg_1)))
+	            (:GologActTerm (unstack ?arg_1 ?arg_2)))))
+    (:actionMap
+        (putaside)
+        (:GologOr 
+            (:GologPicksExists (?arg_3 - BlockType)
+                (:GologSeq
+                    (:GologTest
+                        (and (holding ?arg_3) ))
+                    (:GologActTerm (putdown ?arg_3))))
+            (:GologPicksExists (?arg_4 ?arg_5 - BlockType)
+                (:GologSeq
+                    (:GologTest
+                        (and 
+                        (holding ?arg_5) 
+                        (not (above ?arg_5 A))
+                        (clear ?arg_4)))
+                    (:GologActTerm (stack ?arg_5 ?arg_4))))))
+)
+

@@ -1,0 +1,79 @@
+(define (RefinementMap onAB_RefinementMap)
+    (:fluents
+        (
+        (E)
+        (arm_empty)))
+    (:fluents
+        (
+        (H)
+        (exists (?x - BlockType) 
+            (and 
+                (holding ?x)
+                (Not(== ?x A))
+                (Not(== ?x B))))))
+    (:fluents
+        (
+        (X)
+        (holding A)))
+    (:fluents
+        (
+        (G)
+        (on A B)))
+    (:variables
+        (
+        (n)
+        (#x)
+        (exists (?x - BlockType) (above ?x A))))
+    (:variables
+        (
+        (m)
+        (#x)
+        (exists (?x - BlockType) (above ?x B))))
+    (:actionMap
+        (pick-A)
+        (:GologSeq
+            (:GologTest 
+                (and 
+                    (arm_empty) 
+                    (Not (exists (?arg_1 - BlockType) (above ?arg_1 A)))))
+            (:GologActTerm (pickup A))))
+    (:actionMap
+        (pick-above-A)
+        (:GologPicksExists (?arg_2 ?arg_3 - BlockType)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (on ?arg_2 ?arg_3)
+                    (above ?arg_3 A) 
+                    (arm_empty)))
+	            (:GologActTerm (unstack ?arg_2 ?arg_3)))))
+    (:actionMap
+        (pick-above-B)
+        (:GologPicksExists (?arg_4 ?arg_5 - BlockType) 
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (on ?arg_4 ?arg_5)
+                    (above ?arg_5 B)
+                    (arm_empty)))
+	            (:GologActTerm (unstack ?arg_4 ?arg_5)))))
+    (:actionMap
+        (put-A-on-B)
+        (:GologSeq
+            (:GologTest 
+                (and 
+                    (holding B)
+                    (Not (exists (?arg_6 - BlockType) (above ?arg_6 B)))))
+            (:GologActTerm (stack A B))))
+    (:actionMap
+        (put-other-aside)
+        (:GologPicksExists (?arg_7 - BlockType) 
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (holding ?arg_7)
+                    (Not (== ?arg_7 A))
+                    (Not (== ?arg_7 B))))
+	            (:GologActTerm (putdown ?arg_7)))))
+)
+

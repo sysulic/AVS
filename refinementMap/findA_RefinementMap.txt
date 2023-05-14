@@ -1,0 +1,30 @@
+(define (RefinementMap getlast_RefinementMap)
+    (:fluents
+        (
+        (goal)
+        (retstore A)))
+    (:variables
+        (
+        (n)
+        (#x)
+        (exists (?x - NodeType) (tcfml ?x A))))
+    (:actionMap
+        (Findnext)
+        (:GologPicksExists (?arg_1 ?arg_2 - NodeType)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                        (curptr ?arg_1)
+                        (next ?arg_1 ?arg_2)
+                        (not (== ?arg_2 A))
+                        (before ?arg_2 A)))
+                (:GologActTerm (update ?arg_1 ?arg_2)))))
+    (:actionMap
+        (Storeret)
+        (:GologSeq
+            (:GologTest
+                (and 
+                    (curptr A)))
+            (:GologActTerm (store A))))
+)
+

@@ -1,0 +1,34 @@
+(define (RefinementMap corner_RefinementMap)
+    (:variables
+        (
+        (x)
+        (#v)
+        (exists (?v - value) (tcfml1 ?v))))
+    (:variables
+        (
+        (y)
+        (#v)
+        (exists (?v - value) (tcfml2 ?v))))
+    (:actionMap
+        (moveUp)
+        (:GologPicksExists (?arg_1 ?arg_2 - value)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                        (xpos ?arg_2)
+                        (consec ?arg_1 ?arg_2)
+                        (not (xmin ?arg_2))))
+                (:GologActTerm (xdec ?arg_1 ?arg_2)))))
+    
+    (:actionMap
+        (moveLeft)
+        (:GologPicksExists (?arg_1 ?arg_2 - value)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                        (ypos ?arg_2)
+                        (consec ?arg_1 ?arg_2)
+                        (not(ymin ?arg_2))))
+                (:GologActTerm (ydec ?arg_1 ?arg_2)))))
+)
+

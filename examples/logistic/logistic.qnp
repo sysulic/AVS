@@ -1,0 +1,17 @@
+logistic
+3 D 0 n 1 m 1
+1 D 0 n 1
+1 n 0
+4
+Load-at-Source
+1 n 1
+2 n 0 m 1
+Unload-at-Dest
+1 m 1
+1 m 0
+Drive-s-d
+1 D 0
+1 D 1
+Drive-d-s
+1 D 1
+1 D 0

@@ -1,0 +1,50 @@
+
+;; This is a plain STRIPS formulation of the standard Logistics domain.
+
+;; Types are defined by static (in the sense that
+;; there are no operators that change their truth value) unary predicates.
+;; The types of objects in a problem instance must be defined by including
+;; the appropriate typing predicates in the initial state. The binary 
+;; static predicate "loc" describes the topology of the problem instance: 
+;; "(loc ?l ?c)" is true if the location ?l is in city ?c.
+
+(define (domain logistic)
+  (:requirements :strips :typing)
+  (:types object vehicle location); city truck)
+  (:predicates
+   ;; ##### PREDICATES #####
+   ;; Static predicates: 
+   ;;(loc ?l - location ?c - city) 
+   ;; Non-static predicates:
+   (v_at ?v - vehicle ?l - location) ;; ?v (vehicle) is at location ?l
+   (p_at ?x - object ?l - location) ;; ?x (package) is at location ?l
+   (pinv ?p - object ?v - vehicle) ;; package ?p is in vehicle ?v
+  )
+
+  ;; ##### ACTIONS #####
+
+  ;; Load an object into a vehicle.
+  (:action load
+    :parameters (?o - object ?v - vehicle ?l - location)
+    :precondition (and 
+		       (v_at ?v ?l) (p_at ?o ?l))
+    :effect (and (pinv ?o ?v) (not(p_at ?o ?l)))
+  )
+
+  ;; Unload an object from a vehicle.
+  (:action unload
+    :parameters (?o - object ?v - vehicle ?l - location)
+    :precondition (and 
+		       (v_at ?v ?l) (pinv ?o ?v))
+    :effect (and (p_at ?o ?l) (not(pinv ?o ?v)))
+  )
+
+  ;; Drive a vehicle between two locations in the same city.
+  (:action drive
+    :parameters (?v - vehicle ?l1 - location ?l2 - location);?c - city)
+    :precondition (and 
+		       (v_at ?v ?l1) ;(loc ?l1 ?c) (loc ?l2 ?c)
+		       )
+    :effect (and (v_at ?v ?l2) (not (v_at ?v ?l1)))
+  )
+)

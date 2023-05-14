@@ -1,0 +1,19 @@
+(define (problem onAB_problem) 
+    (:domain onAB)
+    (:objects
+        A B - BlockType)
+    (:init
+        (arm_empty)
+        (on_table A)
+        (exists (?x - BlockType)
+            (and 
+                (or (above ?x A)
+                    (== ?x A))))
+        (on_table B)
+        (exists (?x - BlockType)
+            (and 
+                (or (above ?x B)
+                    (== ?x B)))))
+    (:goal (and
+        (on A B)))
+)

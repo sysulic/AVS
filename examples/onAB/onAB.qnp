@@ -1,0 +1,27 @@
+onAB
+6 n 1 m 1 X 0 H 0 G 0
+6 n 1 m 1 X 0 H 0 G 0 
+1 G 1
+6
+pick-above-A
+2 H 0 n 1
+3 H 1 n 0
+pick-above-B
+2 H 0 m 1
+3 H 1 m 0
+put-other-aside
+3 H 1 X 0
+2 H 0
+pick-A
+3 H 0 X 0 n 0
+2 H 1 X 1
+put-A-on-B
+3 H 1 X 1 m 0
+4 H 0 X 0 m 1 G 1
+
+
+
+
+
+
+

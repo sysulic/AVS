@@ -1,0 +1,34 @@
+(define (domain gripper)
+   (:requirements :strips :typing)
+   (:types roomType gripperType ballType)
+   (:predicates 
+		(at_robby ?room - roomType)
+		(at ?x - ballType ?room - roomType)
+		(free ?y - gripperType)
+		(carry ?x - ballType ?y - gripperType))
+
+   (:action move
+       :parameters  (?fromroom ?toroom - roomType)
+       :precondition (and (at_robby ?fromroom))
+       :effect (and  (at_robby ?toroom)
+		     (not (at_robby ?fromroom))))
+
+   (:action pick
+       :parameters (?x - ballType ?room - roomType ?y - gripperType)
+       :precondition  (and 
+			    (at ?x ?room) (at_robby ?room) (free ?y))
+       :effect (and (carry ?x ?y)
+		    (not (at ?x ?room)) 
+		    (not (free ?y))))
+
+   (:action drop
+       :parameters  (?x - ballType ?room - roomType ?y - gripperType)
+       :precondition  (and
+			    (carry ?x ?y) (at_robby ?room))
+       :effect (and (at ?x ?room)
+		    (free ?y)
+		    (not (carry ?x ?y))))
+)
+
+
+

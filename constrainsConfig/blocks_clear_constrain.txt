@@ -1,0 +1,19 @@
+x,y,z, w= Consts('x y z w', BlockType)
+f1 = ((on(x,y))==(And (above(x,y),(Not (Exists  (z, (And  (above(z,y), above(x,z)) )  )  )))) )
+f2 = (clear(x) ==(Not(Exists (y,on(y,x))))) 
+f3 = (on_table(x) ==(Not(Exists (y,on(x,y))))) 
+f4 = (Not(above(x,x)))
+f5 = Implies((And(above(x,y),above(y,z))),(above(x,z)))
+f6 = Implies((And(above(x,y),above(x,z))),(Or((y == z),(above(y,z)),(above(z,y)))))
+f7 = Implies((And(above(y,x),above(z,x))),(Or((y == z),(above(y,z)),(above(z,y))) ))
+f8 = Or(on_table(x),Exists(y,And(above(x,y),on_table(y))))
+f9 = Or(clear(x),Exists(y, And(above(x,y), clear(y) ) ))
+f10 = Implies(above(x,y),Or(Exists(z,on(x,z)), Exists(w,on(w,y))))
+f11 = arm_empty == Not(Exists(x,holding(x)))# ForAll X
+f12 = ForAll([x,y],Implies(And(holding(x),holding(y)),x==y))
+constraint = (And(f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12))
+
+
+
+
+

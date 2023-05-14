@@ -1,0 +1,83 @@
+(define (RefinementMap gripper_redefinemap)
+    (:fluents
+        (
+        (T)
+        (at_robby B)))
+    (:variables
+        (
+        (b)
+        (#x)
+        (exists (?x - ballType) (at ?x A))))
+    (:variables 
+        (
+        (c)
+        (#x)
+        (exists (?x - ballType ?y - gripperType ) (carry ?x ?y))))
+    (:variables
+        (
+        (g)
+        (#y)
+        (exists (?y - gripperType) (free ?y))))
+    (:actionMap
+        (Pick-at-source)
+        (:GologPicksExists (?arg_1 - ballType ?arg_2 - gripperType) 
+            (:GologSeq
+                (:GologTest
+                    (and 
+                        (at_robby A) 
+                        (at ?arg_1 A)
+                        (free ?arg_2)))
+                (:GologActTerm (pick ?arg_1 A ?arg_2)))))
+    (:actionMap
+        (Drop-at-target)
+        (:GologPicksExists (?arg_3 - ballType ?arg_4 - gripperType)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (at_robby B) 
+                    (carry ?arg_3 ?arg_4)))
+                (:GologActTerm (drop ?arg_3 B ?arg_4)))))
+    (:actionMap
+        (Move)
+        (:GologSeq
+            (:GologTest
+                (and (at_robby A)))
+            (:GologActTerm (move A B))))
+    (:actionMap
+        (Leave)
+        (:GologSeq
+            (:GologTest
+                (and (at_robby B)))
+            (:GologActTerm (move B A))))
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

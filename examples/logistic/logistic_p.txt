@@ -1,0 +1,13 @@
+(define (problem logistic-pro1)
+  (:domain logistic)
+   (:objects Vehicle - vehicle Source Dest - location)
+   (:variablesInQuantifiedFormula ?x - object)
+   (:init      
+     (not(v_at Vehicle Dest)) 
+     (exists (?p - object) (p_at ?p Source))
+   )
+   (:goal (and 
+     (forall (?x - object) (p_at ?x Dest))
+    )
+   )
+)

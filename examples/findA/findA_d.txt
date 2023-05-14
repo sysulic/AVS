@@ -1,0 +1,32 @@
+(define (domain findA)
+    (:requirements :strips :typing :equality)
+    (:predicates
+        (curptr ?x - NodeType)
+        (next ?x ?y - NodeType)
+        (retstore ?x - NodeType)
+        (unVisted ?x - NodeType))
+    (:transitive_closure (before,next))
+    (:transitive_closure_fml tcfml 
+        :parameters(?x A - NodeType)
+        :formula (and 
+            (before ?x A)
+            (unVisted ?x)))
+    (:action update
+        :parameters (?x ?y - NodeType)
+        :precondition (and 
+            (curptr ?x)
+            (next ?x  ?y)
+            (unVisted ?y))
+        :effect (and
+            (not (curptr ?x))
+            (curptr ?y)
+            (not (unVisted ?y))
+            (not (retstore ?y))))
+    (:action store; New one temp ptr for store
+        :parameters (?x - NodeType)
+        :precondition (and 
+            (curptr ?x)
+            (not (retstore ?x)))
+        :effect (and 
+            (retstore ?x)))
+)

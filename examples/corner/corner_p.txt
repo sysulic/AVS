@@ -1,0 +1,26 @@
+(define (problem corner_p)
+	(:domain corner)
+	(:objects vxmin vymin others vxmax vymax - value)
+	(:init
+		(xmin vxmin)
+		(ymin vymin)
+		(not (xvisited vxmin))
+		(not (yvisited vymin))
+		(xmax vxmax)
+		(ymax vymax)
+		(xpos vxmax)
+		(ypos vymax)
+		(exists (?v - value)
+			(and
+			(less vxmin ?v)
+			(less ?v vxmax)
+			(not(xvisited ?v))))
+		(exists (?v - value)
+			(and
+			(not (yvisited ?v))
+			(less vymin ?v)
+			(less ?v vymax))))
+	(:goal (and
+		(xvisited vxmin)
+		(yvisited vymin)))
+)

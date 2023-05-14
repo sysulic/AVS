@@ -1,0 +1,50 @@
+(define (RefinementMap blocks_clear_redefinemap)
+    (:fluents
+        (
+        (D)
+        (v_at Vehicle Dest)))
+    (:variables
+        (
+        (n)
+        (#x)
+        (exists (?x - object) (p_at ?x Source))))
+    (:variables 
+        (
+        (m)
+        (#x)
+        (exists (?x - object) (pinv ?x Vehicle))))
+    (:actionMap
+        (Load-at-Source)
+        (:GologPicksExists (?arg_1 - object) 
+            (:GologSeq
+                (:GologTest
+                    (and 
+                        (p_at ?arg_1 Source)
+                        (v_at Vehicle Source)))
+                (:GologActTerm (load ?arg_1 Vehicle Source)))))
+    (:actionMap
+        (Unload-at-Dest)
+        (:GologPicksExists (?arg_2 - object)
+            (:GologSeq
+                (:GologTest
+                    (and 
+                    (pinv ?arg_2 Vehicle) 
+                    (v_at Vehicle Dest)))
+                (:GologActTerm (unload ?arg_2 Vehicle Dest)))))
+    (:actionMap
+        (Drive-s-d)
+        (:GologSeq
+            (:GologTest
+                (and 
+                (v_at Vehicle Source)))
+            (:GologActTerm (drive Vehicle Source Dest))))
+    (:actionMap
+        (Drive-d-s)
+        (:GologSeq
+            (:GologTest
+                (and 
+                (v_at Vehicle Dest)))
+            (:GologActTerm (drive Vehicle Dest Source))))
+)
+
+

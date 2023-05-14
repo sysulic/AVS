@@ -1,0 +1,28 @@
+(define (domain getlast)
+    (:requirements :strips :typing :equality)
+    (:types NodeType)
+    (:predicates
+        (curptr ?x - NodeType)
+        (next ?x ?y - NodeType)
+        (retstore ?x - NodeType)
+        (unVisted ?x - NodeType))
+    (:transitive_closure (before,next))
+    (:action update
+        :parameters (?x ?y - NodeType)
+        :precondition (and
+            (curptr ?x)
+            (next ?x  ?y)
+            (not (unVisted ?y)))
+        :effect (and 
+            (not (curptr ?x))
+            (curptr ?y)
+            (not (unVisted ?y))
+            (not (retstore ?y))))
+    (:action store
+        :parameters (?x - NodeType)
+        :precondition (and 
+            (curptr ?x)
+            (not (retstore ?x)))
+        :effect (and 
+            (retstore ?x)))
+)  

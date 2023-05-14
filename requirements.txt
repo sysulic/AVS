@@ -1,0 +1,5 @@
+z3
+z3-solver==4.8.10.0
+networkx
+func_timeout
+matplotlib 

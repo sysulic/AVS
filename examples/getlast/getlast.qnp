@@ -1,0 +1,13 @@
+getlast
+2 mNodes 1 goal 0
+2 mNodes 1 goal 0
+1 goal 1
+2
+Findnext
+2 mNodes 1 goal 0
+1 mNodes 0
+Storeret
+2 mNodes 0 goal 0
+1 goal 1
+
+

@@ -1,0 +1,32 @@
+(define (domain corner)
+	(:requirements :typing :negative-preconditions)
+	(:types value)
+	(:predicates
+		(xpos ?v - value)
+		(ypos ?v - value)
+		(xmin ?v - value)
+		(ymin ?v - value)
+		(xmax ?v - value)
+		(ymax ?v - value)
+		(consec ?v1 ?v2 - value)
+ 		(xvisited ?v - value)
+ 		(yvisited ?v - value))
+	(:transitive_closure (less,consec))
+    (:transitive_closure_fml tcfml1 
+        :parameters(?v - value)
+        :formula (and 
+            (not (xvisited ?v))))
+	(:transitive_closure_fml tcfml2 
+        :parameters(?v - value)
+        :formula (and 
+            (not (yvisited ?v))))
+	(:action xdec
+		:parameters (?v1 ?v2  - value)
+		:precondition (and (xpos ?v2) (consec ?v1 ?v2)) 
+		:effect (and (xvisited ?v1) (not (xpos ?v2)) (xpos ?v1)))
+	(:action ydec
+		:parameters (?v1 ?v2  - value)
+		:precondition (and  (ypos ?v2) (consec ?v1 ?v2))
+		:effect (and (yvisited ?v1) (not (ypos ?v2)) (ypos ?v1)))
+
+)

@@ -1,0 +1,12 @@
+(define (problem gripperproblem)
+   (:domain gripper)
+   (:objects A B - roomType LEFT RIGHT - gripperType)
+   (:variablesInQuantifiedFormula ?x - ballType)
+   (:init 
+          (at_robby A)
+          (free LEFT)
+          (free RIGHT)
+          (exists (?x - roomType)(at ?x A)))
+   (:goal (and 
+       (forall (?x - roomType)(at ?x B))))
+)

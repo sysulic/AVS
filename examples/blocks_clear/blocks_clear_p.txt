@@ -1,0 +1,14 @@
+(define (problem blockclear_problem) 
+    (:domain blocks_clear)
+    (:objects
+        A G - BlockType)
+    (:init
+        (on_table A)
+        (arm_empty) 
+        (exists (?x - BlockType)
+            (or (above ?x A)
+                (== ?x A)))
+    )
+    (:goal (and
+        (clear A)))
+)

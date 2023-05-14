@@ -1,0 +1,8 @@
+x = Const('x', object)
+f1 = v_at(Vehicle,Dest) == Not(v_at(Vehicle,Source))
+f2 = ForAll([x],p_at(x,Dest)) == Not(Exists([x],p_at(x,Source)))
+f3 = ForAll([x],Implies(p_at(x,Source), And(Not(pinv(x,Vehicle)),Not(p_at(x,Dest)))))
+f4 = ForAll([x],Implies(pinv(x,Vehicle),And(Not(p_at(x,Source)),Not(p_at(x,Dest)))))
+f5 = ForAll([x],Implies(p_at(x,Dest),   And(Not(pinv(x,Vehicle)),Not(p_at(x,Source)))))
+constraint = (And(f1,f2,f3,f4,f5))
+

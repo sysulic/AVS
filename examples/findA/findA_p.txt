@@ -1,0 +1,15 @@
+(define (problem findA_p) 
+    (:domain findA)
+    (:objects 
+        H others A - NodeType)
+    (:init
+        (exists (?x - NodeType)
+            (and
+                (curptr H)
+                (next H ?x)
+                (before ?x A)
+                (unVisted ?x)
+                (not (retstore A)))))
+    (:goal (and
+        (retstore A)))
+)

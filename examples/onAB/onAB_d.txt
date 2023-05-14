@@ -1,0 +1,34 @@
+(define (domain onAB)
+  (:requirements :strips :equality :typing :transitive_closure)
+  (:types BlockType)
+  (:predicates 
+            (clear ?x - BlockType)
+            (on_table ?x - BlockType)
+            (arm_empty)
+            (holding ?x - BlockType)
+            (on ?x ?underob - BlockType))
+ (:transitive_closure (above,on))
+
+(:action pickup
+  :parameters (?ob - BlockType)
+  :precondition (and (clear ?ob) (on_table ?ob) (arm_empty))
+  :effect (and (holding ?ob) (not (clear ?ob)) (not (on_table ?ob)) 
+               (not (arm_empty))))
+
+(:action putdown
+  :parameters  (?ob - BlockType)
+  :precondition (holding ?ob)
+  :effect (and (clear ?ob) (arm_empty) (on_table ?ob) 
+               (not (holding ?ob))))
+
+(:action stack
+  :parameters  (?ob ?underob - BlockType)
+  :precondition (and (clear ?underob) (holding ?ob))
+  :effect (and (arm_empty) (clear ?ob) (on ?ob ?underob)
+               (not (clear ?underob)) (not (holding ?ob))))
+
+(:action unstack
+  :parameters  (?ob ?underob - BlockType)
+  :precondition (and (on ?ob ?underob) (clear ?ob) (arm_empty))
+  :effect (and (holding ?ob) (clear ?underob)
+               (not (on ?ob ?underob)) (not (clear ?ob)) (not (arm_empty)))))

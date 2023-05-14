@@ -1,0 +1,22 @@
+(define (problem getlast_p0) 
+(:domain getlast)
+(:objects 
+    Others A - NodeType
+)
+(:init
+    (exists (?x - NodeType)
+        (and
+            (unVisted A)
+            (not  (retstore A))
+            (curptr ?x)
+            (not 
+                (exists 
+                    (?y - NodeType)
+                    (next ?y ?x)
+                    (not (== ?x A))))))
+)
+
+(:goal (and
+    (retstore A))
+)
+)

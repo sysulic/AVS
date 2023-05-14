@@ -1,0 +1,32 @@
+blocks_clear 
+2 n 1 H 0
+2 n 1 H 0
+1 n 0
+4
+pickabove
+2 n 1 H 0
+2 n 0 H 1
+putaside
+1 H 1
+1 H 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
