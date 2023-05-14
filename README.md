@@ -5,7 +5,7 @@ Main Page {#mainpage}
 
 # Automatic-Verification-for-Soundness-of-Bounded-QNP-Abstractions-for-Generalized-Planning
 
-Please read the [online document here](https://sautephoprogrammer.github.io/Sound_Abstraction_Verification_System/).
+Please read the [online document here](https://sysulic.github.io/Automatic-Verification-for-Soundness-of-Bounded-QNP-Abstractions-for-Generalized-Planning/).
 
 Installation dependencies:
 
@@ -51,7 +51,7 @@ take gripper for example:
 python main.py -domainname "gripper" -DEBUG True -timeout_number 10 
 ```
 
-![output](.\output.gif)
+![.\output.gif](https://github.com/sysulic/Automatic-Verification-for-Soundness-of-Bounded-QNP-Abstractions-for-Generalized-Planning/blob/main/output.gif?raw=true)
 
 ## System function introduction
 
