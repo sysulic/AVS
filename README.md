@@ -5,7 +5,7 @@ Main Page {#mainpage}
 
 # Automatic-Verification-for-Soundness-of-Bounded-QNP-Abstractions-for-Generalized-Planning
 
-Please read the [online document here](https://sysulic.github.io/Verification-System/).
+Please read the [online document here](https://sysulic.github.io/abstraction-verification-system/).
 
 Installation dependencies:
 
